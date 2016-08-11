@@ -106,6 +106,9 @@ if (StringUtil.isNullOrEmpty(request.getParameter("p"))) {
 	} else {
     // 詳細表示
     Map<String, Object> post = postServ.show(Integer.valueOf(request.getParameter("p")));
+    if (null == post) {
+    	response.sendError(HttpServletResponse.SC_NOT_FOUND);
+    } else {
 %>
 <div id="detail" data-role="page" data-title="<%= blogname %> :: <%= post.get("post_title") %>"
      data-add-back-btn="true" data-back-btn-text="Back">
@@ -151,7 +154,7 @@ if (StringUtil.isNullOrEmpty(request.getParameter("p"))) {
   </div>
 </div>
 <%
-}
+} }
 %>
 
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js" charset="utf-8"></script>
